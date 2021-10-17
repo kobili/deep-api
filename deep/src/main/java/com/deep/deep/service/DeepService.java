@@ -42,9 +42,8 @@ public class DeepService {
     }
 
     /**
-     *
-     * @param id
-     * @return
+     * Returns a DeepResponseDto for the Deep entity with the given id
+     * @param id: id of the Deep we want to retrieve
      */
     public DeepResponseDto getIndexedDeep(int id) {
         Optional<Deep> deep = deepRepository.findById(id);
@@ -56,6 +55,9 @@ public class DeepService {
         }
     }
 
+    /**
+     * Gets a list of all Deeps in the database
+     */
     public List<DeepResponseDto> getAllDeeps() {
         List<DeepResponseDto> response = new ArrayList<>();
         List<Deep> allDeeps = (List<Deep>) deepRepository.findAll();
