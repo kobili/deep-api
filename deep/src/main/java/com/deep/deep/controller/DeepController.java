@@ -3,7 +3,6 @@ package com.deep.deep.controller;
 import com.deep.deep.dto.AddDeepBulkRequestDto;
 import com.deep.deep.dto.AddDeepRequestDto;
 import com.deep.deep.dto.DeepResponseDto;
-import com.deep.deep.entity.Deep;
 import com.deep.deep.service.DeepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +19,16 @@ public class DeepController {
     @GetMapping
     public DeepResponseDto getRandomDeep() {
         return deepService.getRandomDeep();
+    }
+
+    @GetMapping(value = "/{id}/index")
+    public DeepResponseDto getDeepWithId(@PathVariable int id) {
+        return deepService.getIndexedDeep(id);
+    }
+
+    @GetMapping(value = "/all")
+    public List<DeepResponseDto> getAllDeeps() {
+        return deepService.getAllDeeps();
     }
 
     @PostMapping

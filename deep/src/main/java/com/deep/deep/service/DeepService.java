@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.List;
 
@@ -38,6 +39,30 @@ public class DeepService {
         Deep randomDeep = allDeeps.get(getRandomIntInRange(0, numberOfDeeps - 1));
 
         return new DeepResponseDto(randomDeep.getId(), randomDeep.getDeep());
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public DeepResponseDto getIndexedDeep(int id) {
+        Optional<Deep> deep = deepRepository.findById(id);
+
+        if (deep.isPresent()) {
+            return new DeepResponseDto(deep.get().getId(), deep.get().getDeep());
+        } else {
+            return new DeepResponseDto(420, "You're pretty deep");
+        }
+    }
+
+    public List<DeepResponseDto> getAllDeeps() {
+        List<DeepResponseDto> response = new ArrayList<>();
+        List<Deep> allDeeps = (List<Deep>) deepRepository.findAll();
+
+        allDeeps.forEach(deep -> response.add(new DeepResponseDto(deep.getId(), deep.getDeep())));
+
+        return response;
     }
 
     /**
