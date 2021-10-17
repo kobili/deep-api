@@ -17,7 +17,7 @@ import java.util.List;
 public class DeepService {
 
     @Autowired
-    private DeepRepository deepRepository;
+    private final DeepRepository deepRepository;
 
     @Autowired
     public DeepService(DeepRepository deepRepository) {
@@ -26,7 +26,7 @@ public class DeepService {
 
     /**
      * fetches a Deep item from database and converts it to a DeepResponseDto
-     * @return: a DeepResponseDto
+     * @return : a DeepResponseDto
      */
     public DeepResponseDto getRandomDeep() {
         List<Deep> allDeeps = (List<Deep>) deepRepository.findAll();
@@ -36,7 +36,7 @@ public class DeepService {
             return new DeepResponseDto(69, "You've gotta be deeping me");
         }
 
-        Deep randomDeep = allDeeps.get(getRandomIntInRange(0, numberOfDeeps - 1));
+        Deep randomDeep = allDeeps.get(ThreadLocalRandom.current().nextInt(0, numberOfDeeps));
 
         return new DeepResponseDto(randomDeep.getId(), randomDeep.getDeep());
     }
@@ -48,11 +48,8 @@ public class DeepService {
     public DeepResponseDto getIndexedDeep(int id) {
         Optional<Deep> deep = deepRepository.findById(id);
 
-        if (deep.isPresent()) {
-            return new DeepResponseDto(deep.get().getId(), deep.get().getDeep());
-        } else {
-            return new DeepResponseDto(420, "You're pretty deep");
-        }
+        return deep.map(value -> new DeepResponseDto(value.getId(), value.getDeep()))
+                .orElseGet(() -> new DeepResponseDto(420, "You're pretty deep"));
     }
 
     /**
@@ -69,7 +66,7 @@ public class DeepService {
 
     /**
      * Adds a  new Deep entity to database
-     * @param deepRequestDto
+     * @param deepRequestDto : request body containing
      * @return a DeepResponseDto of the Deep entity that was just added
      */
     public DeepResponseDto addDeep(AddDeepRequestDto deepRequestDto) {
@@ -89,20 +86,8 @@ public class DeepService {
     public List<DeepResponseDto> addDeeps(AddDeepBulkRequestDto deepBulkRequestDto) {
         List<DeepResponseDto> response = new ArrayList<>();
 
-        deepBulkRequestDto.getDeeps().forEach(deepString -> {
-            response.add(addDeep(new AddDeepRequestDto(deepString)));
-        });
+        deepBulkRequestDto.getDeeps().forEach(deepString -> response.add(addDeep(new AddDeepRequestDto(deepString))));
 
         return response;
-    }
-
-    /**
-     * Returns a random integer in the range [min, max]
-     * @param min: smallest number that can be returned
-     * @param max: largest number that can be returned
-     * @return: a random integer in the given range
-     */
-    private int getRandomIntInRange(int min, int max) {
-        return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 }
