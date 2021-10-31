@@ -65,6 +65,21 @@ public class DeepService {
     }
 
     /**
+     * Gets a list of all Deeps without IDs
+     * @return : a list of deep strings
+     */
+    public List<String> getAllDeepsAsStrings() {
+        List<String> deepStrings = new ArrayList<>();
+        List<Deep> allDeeps = (List<Deep>) deepRepository.findAll();
+
+        allDeeps.forEach(deep -> {
+            deepStrings.add(deep.getDeep());
+        });
+
+        return deepStrings;
+    }
+
+    /**
      * Adds a  new Deep entity to database
      * @param deepRequestDto : request body containing
      * @return a DeepResponseDto of the Deep entity that was just added

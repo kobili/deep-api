@@ -31,6 +31,11 @@ public class DeepController {
         return deepService.getAllDeeps();
     }
 
+    @GetMapping(value = "/list")
+    public List<String> getDeepList() {
+        return deepService.getAllDeepsAsStrings();
+    }
+
     @PostMapping
     public DeepResponseDto addNewDeep(@RequestBody AddDeepRequestDto request) {
         return deepService.addDeep(request);
