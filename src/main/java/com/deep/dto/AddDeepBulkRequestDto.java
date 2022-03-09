@@ -1,4 +1,4 @@
-package com.deep.deep.dto;
+package com.deep.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

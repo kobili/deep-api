@@ -1,9 +1,9 @@
-package com.deep.deep.controller;
+package com.deep.controller;
 
-import com.deep.deep.dto.AddDeepBulkRequestDto;
-import com.deep.deep.dto.AddDeepRequestDto;
-import com.deep.deep.dto.DeepResponseDto;
-import com.deep.deep.service.DeepService;
+import com.deep.dto.AddDeepBulkRequestDto;
+import com.deep.dto.AddDeepRequestDto;
+import com.deep.dto.DeepResponseDto;
+import com.deep.service.DeepService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

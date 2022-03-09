@@ -1,10 +1,10 @@
-package com.deep.deep.service;
+package com.deep.service;
 
-import com.deep.deep.dto.AddDeepBulkRequestDto;
-import com.deep.deep.dto.AddDeepRequestDto;
-import com.deep.deep.dto.DeepResponseDto;
-import com.deep.deep.entity.Deep;
-import com.deep.deep.repository.DeepRepository;
+import com.deep.dto.AddDeepBulkRequestDto;
+import com.deep.dto.AddDeepRequestDto;
+import com.deep.dto.DeepResponseDto;
+import com.deep.entity.Deep;
+import com.deep.repository.DeepRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

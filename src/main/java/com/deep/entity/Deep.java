@@ -1,4 +1,4 @@
-package com.deep.deep.entity;
+package com.deep.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
