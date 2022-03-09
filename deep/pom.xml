@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.deep</groupId>
-	<artifactId>deep</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>deep-api</artifactId>
+	<version>1.0.0</version>
 	<name>deep API</name>
 	<description>Deep Api</description>
 	<properties>
@@ -24,6 +24,11 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<dependency>

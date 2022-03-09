@@ -72,9 +72,7 @@ public class DeepService {
         List<String> deepStrings = new ArrayList<>();
         List<Deep> allDeeps = (List<Deep>) deepRepository.findAll();
 
-        allDeeps.forEach(deep -> {
-            deepStrings.add(deep.getDeep());
-        });
+        allDeeps.forEach(deep -> deepStrings.add(deep.getDeep()));
 
         return deepStrings;
     }
